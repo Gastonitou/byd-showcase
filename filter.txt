@@ -1,0 +1,15 @@
+[0:v]fade=t=in:st=0:d=1,
+  fade=t=out:st=176:d=1,
+  drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text=BYD DOLPHIN:fontcolor=white:fontsize=36:x=(w-text_w)/2:y=h-text_h-90:shadowcolor=black@0.8:shadowx=3:shadowy=3:enable=between(t\,0.0\,29.0),
+  drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text=BYD:fontcolor=0xE94560:fontsize=52:x=60:y=40:shadowcolor=black@0.8:shadowx=3:shadowy=3:enable=between(t\,0.0\,4.0),
+  drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text=BYD ATTO 3:fontcolor=white:fontsize=36:x=(w-text_w)/2:y=h-text_h-90:shadowcolor=black@0.8:shadowx=3:shadowy=3:enable=between(t\,29.0\,69.0),
+  drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text=BYD:fontcolor=0xE94560:fontsize=52:x=60:y=40:shadowcolor=black@0.8:shadowx=3:shadowy=3:enable=between(t\,29.0\,33.0),
+  drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text=BYD ATTO 3 EVO:fontcolor=white:fontsize=36:x=(w-text_w)/2:y=h-text_h-90:shadowcolor=black@0.8:shadowx=3:shadowy=3:enable=between(t\,69.0\,94.0),
+  drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text=BYD:fontcolor=0xE94560:fontsize=52:x=60:y=40:shadowcolor=black@0.8:shadowx=3:shadowy=3:enable=between(t\,69.0\,73.0),
+  drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text=BYD SEAL U:fontcolor=white:fontsize=36:x=(w-text_w)/2:y=h-text_h-90:shadowcolor=black@0.8:shadowx=3:shadowy=3:enable=between(t\,94.0\,114.0),
+  drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text=BYD:fontcolor=0xE94560:fontsize=52:x=60:y=40:shadowcolor=black@0.8:shadowx=3:shadowy=3:enable=between(t\,94.0\,98.0),
+  drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text=BYD HAN L und TANG L:fontcolor=white:fontsize=36:x=(w-text_w)/2:y=h-text_h-90:shadowcolor=black@0.8:shadowx=3:shadowy=3:enable=between(t\,114.0\,177.0),
+  drawtext=fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:text=BYD:fontcolor=0xE94560:fontsize=52:x=60:y=40:shadowcolor=black@0.8:shadowx=3:shadowy=3:enable=between(t\,114.0\,118.0)[v];
+
+[0:a]afade=t=in:d=1,
+  afade=t=out:st=176:d=1[a]

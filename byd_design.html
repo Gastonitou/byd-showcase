@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>BYD — Alle Modelle</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root { --byd-red:#E94560; --byd-dark:#0f0f16; }
+body { font-family:'Inter',sans-serif; background:var(--byd-dark); color:#fff; overflow-x:hidden; }
+
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  padding:14px 20px; display:flex; justify-content:space-between; align-items:center;
+  background:rgba(15,15,22,0.9); backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,0.04);
+}
+nav .logo { font-size:16px; font-weight:900; letter-spacing:-1px; }
+nav .logo span { color:var(--byd-red); }
+
+.hero {
+  height:100vh; position:relative; overflow:hidden;
+  display:flex; align-items:center; justify-content:center;
+}
+.hero-vid {
+  position:absolute; top:50%; left:50%; min-width:100%; min-height:100%;
+  width:auto; height:auto; transform:translate(-50%,-50%); object-fit:cover;
+}
+.hero-overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(180deg,transparent 0%,rgba(15,15,22,0.2) 50%,rgba(15,15,22,0.7) 100%);
+  z-index:1;
+}
+.hero-content { position:relative; z-index:2; text-align:center; padding:0 16px; }
+.hero h1 {
+  font-size:clamp(36px,14vw,100px); font-weight:900; letter-spacing:-2px;
+  background:linear-gradient(135deg,#fff 30%,var(--byd-red) 100%);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  margin-bottom:6px;
+}
+.hero .sub { font-size:clamp(10px,2vw,16px); font-weight:300; color:rgba(255,255,255,0.5); letter-spacing:6px; text-transform:uppercase; }
+
+.hero-cta {
+  margin-top:20px; display:inline-block;
+  padding:12px 36px; background:var(--byd-red); color:#fff;
+  font-size:14px; font-weight:700; border:none; border-radius:50px;
+  cursor:pointer; text-decoration:none; letter-spacing:1px;
+  -webkit-tap-highlight-color:transparent;
+}
+
+.showcase { padding:50px 12px 60px; max-width:1000px; margin:0 auto; }
+.showcase-title { text-align:center; margin-bottom:28px; }
+.showcase-title h2 { font-size:clamp(20px,4vw,30px); font-weight:700; }
+.showcase-title p { color:rgba(255,255,255,0.3); font-size:12px; margin-top:4px; }
+
+.showcase-grid { display:grid; gap:16px; }
+@media(max-width:640px){ .showcase-grid { grid-template-columns:1fr; } }
+@media(min-width:641px) and (max-width:1024px){ .showcase-grid { grid-template-columns:1fr 1fr; } }
+@media(min-width:1025px){ .showcase-grid { grid-template-columns:1fr 1fr 1fr; } }
+
+.video-card {
+  border-radius:14px; overflow:hidden;
+  cursor:pointer; background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.05);
+  text-decoration:none; color:#fff; display:flex; flex-direction:column;
+  -webkit-tap-highlight-color:transparent;
+  transition:transform 0.2s;
+}
+.video-card:active { transform:scale(0.97); }
+
+.video-card .thumb-wrap {
+  position:relative; width:100%; aspect-ratio:16/9; overflow:hidden;
+  background:rgba(255,255,255,0.02);
+}
+.video-card img.poster {
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; z-index:1;
+}
+.video-card video {
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; opacity:0; transition:opacity 0.4s; z-index:2; pointer-events:none;
+}
+.video-card:hover video { opacity:1; }
+.video-card:hover img.poster { opacity:0; }
+
+.video-card .play-btn {
+  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  width:48px; height:48px; background:var(--byd-red);
+  border-radius:50%; display:flex; align-items:center; justify-content:center;
+  font-size:22px; box-shadow:0 4px 16px rgba(0,0,0,0.4); z-index:5;
+}
+.video-card .play-btn span {
+  position:absolute; bottom:-22px;
+  font-size:8px; letter-spacing:2px; color:rgba(255,255,255,0.4);
+  font-weight:600; white-space:nowrap;
+}
+.video-card .info { padding:12px 14px 14px; }
+.video-card .info h3 { font-size:15px; font-weight:700; }
+.video-card .info .sub { font-size:10px; color:rgba(255,255,255,0.4); letter-spacing:1px; margin-top:2px; }
+
+.stats-row { max-width:800px; margin:-24px auto 0; position:relative; z-index:3; padding:0 12px; }
+.stats { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:rgba(255,255,255,0.05); border-radius:12px; overflow:hidden; border:1px solid rgba(255,255,255,0.04); }
+.stat { background:rgba(255,255,255,0.02); padding:18px 8px; text-align:center; }
+.stat .n { font-size:20px; font-weight:900; background:linear-gradient(135deg,#fff,var(--byd-red)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.stat .l { font-size:9px; color:rgba(255,255,255,0.3); letter-spacing:1px; margin-top:2px; }
+@media(max-width:500px){ .stats { grid-template-columns:1fr 1fr; } .stat { padding:14px 8px; } .stat .n { font-size:16px; } }
+
+.premium-title { text-align:center; margin:50px 0 28px; }
+.premium-title .num { display:inline-block; font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--byd-red); border:1px solid rgba(233,69,96,0.2); padding:4px 10px; border-radius:20px; margin-bottom:8px; }
+.premium-title h2 { font-size:clamp(18px,3vw,28px); font-weight:700; }
+
+.tech-section { padding:50px 12px; max-width:1000px; margin:0 auto; }
+.tech-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.tech-card { text-align:center; padding:20px 12px; border-radius:12px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.04); }
+.tech-card .icon { font-size:28px; margin-bottom:8px; }
+.tech-card h4 { font-size:13px; font-weight:700; margin-bottom:3px; }
+.tech-card p { font-size:11px; color:rgba(255,255,255,0.35); line-height:1.4; }
+@media(max-width:500px){ .tech-grid { grid-template-columns:1fr; } }
+
+.cta { text-align:center; padding:50px 16px 60px; }
+.cta h2 { font-size:clamp(20px,3vw,28px); font-weight:700; margin-bottom:10px; }
+.cta p { color:rgba(255,255,255,0.3); margin-bottom:20px; font-size:13px; }
+
+footer { text-align:center; padding:24px; border-top:1px solid rgba(255,255,255,0.03); font-size:11px; color:rgba(255,255,255,0.12); }
+.fade-in { opacity:0; transform:translateY(16px); transition:all 0.5s ease; }
+.fade-in.visible { opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">BYD<span>.</span></div>
+</nav>
+
+<section class="hero">
+  <video class="hero-vid" autoplay muted loop playsinline poster="/premium_bg/yangwang_u8_quick_poster.jpg">
+    <source src="/premium_bg/yangwang_u8_hero.mp4" type="video/mp4">
+    <source src="/premium_bg/yangwang_u8_quick_fast.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge" style="display:inline-block;font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--byd-red);border:1px solid rgba(233,69,96,0.3);padding:5px 14px;border-radius:20px;margin-bottom:10px;background:rgba(233,69,96,0.08);">⭐ Yangwang U8</div>
+    <div class="sub">Build Your Dreams</div>
+    <h1>BYD</h1>
+    <a class="hero-cta" href="#s">▶ BYD entdecken</a>
+  </div>
+</section>
+
+<div class="stats-row">
+<div class="stats">
+  <div class="stat fade-in"><div class="n">6.000.000+</div><div class="l">E-Autos</div></div>
+  <div class="stat fade-in"><div class="n">70+</div><div class="l">Länder</div></div>
+  <div class="stat fade-in"><div class="n">#1</div><div class="l">Export China</div></div>
+  <div class="stat fade-in"><div class="n">Blade</div><div class="l">Safe</div></div>
+</div>
+</div>
+
+<section class="showcase" id="s">
+  <div class="showcase-title fade-in">
+    <h2>🚗 Alle BYD Modelle</h2>
+    <p>Tippen → Video öffnen</p>
+  </div>
+
+  <div class="showcase-grid">
+
+    <!-- DOLPHIN (eigenes Video) -->
+    <a class="video-card fade-in" href="/premium_bg/dolphin_fast.mp4" target="_blank" rel="noopener">
+      <div class="thumb-wrap">
+        <img class="poster" src="/premium_bg/dolphin_poster.jpg" alt="" loading="lazy">
+        <video muted loop playsinline preload="none"><source src="/premium_bg/dolphin_fast.mp4" type="video/mp4"></video>
+        <div class="play-btn">▶<span>TAP</span></div>
+      </div>
+      <div class="info"><h3>🐬 DOLPHIN</h3><div class="sub">ab 22.990€ · 427 km · 204 PS</div></div>
+    </a>
+
+    <!-- DOLPHIN SURF (eigenes Video) -->
+    <a class="video-card fade-in" href="/premium_bg/dolphin_surf_fast.mp4" target="_blank" rel="noopener">
+      <div class="thumb-wrap">
+        <img class="poster" src="/premium_bg/dolphin_surf_poster.jpg" alt="" loading="lazy">
+        <video muted loop playsinline preload="none"><source src="/premium_bg/dolphin_surf_fast.mp4" type="video/mp4"></video>
+        <div class="play-btn">▶<span>TAP</span></div>
+      </div>
+      <div class="info"><h3>🏄 DOLPHIN SURF</h3><div class="sub">ab 18.990€ · 310 km · 95 PS</div></div>
+    </a>
+
+    <!-- ATTO 3 (eigenes Video) -->
+    <a class="video-card fade-in" href="/premium_bg/atto3_fast.mp4" target="_blank" rel="noopener">
+      <div class="thumb-wrap">
+        <img class="poster" src="/premium_bg/atto3_poster.jpg" alt="" loading="lazy">
+        <video muted loop playsinline preload="none"><source src="/premium_bg/atto3_fast.mp4" type="video/mp4"></video>
+        <div class="play-btn">▶<span>TAP</span></div>
+      </div>
+      <div class="info"><h3>⚡ ATTO 3 EVO</h3><div class="sub">ab 44.990€ · 510 km · 313 PS</div></div>
+    </a>
+
+    <!-- SEAL (eigenes Video) -->
+    <a class="video-card fade-in" href="/premium_bg/en_seal_fast.mp4" target="_blank" rel="noopener">
+      <div class="thumb-wrap">
+        <img class="poster" src="/premium_bg/en_seal_poster.jpg" alt="" loading="lazy">
+        <video muted loop playsinline preload="none"><source src="/premium_bg/en_seal_fast.mp4" type="video/mp4"></video>
+        <div class="play-btn">▶<span>TAP</span></div>
+      </div>
+      <div class="info"><h3>🏎️ SEAL</h3><div class="sub">ab 37.990€ · 570 km · 530 PS</div></div>
+    </a>
+
+    <!-- SEAL U (eigenes Video) -->
+    <a class="video-card fade-in" href="/premium_bg/sealu_fast.mp4" target="_blank" rel="noopener">
+      <div class="thumb-wrap">
+        <img class="poster" src="/premium_bg/sealu_poster.jpg" alt="" loading="lazy">
+        <video muted loop playsinline preload="none"><source src="/premium_bg/sealu_fast.mp4" type="video/mp4"></video>
+        <div class="play-btn">▶<span>TAP</span></div>
+      </div>
+      <div class="info"><h3>🚀 SEAL U</h3><div class="sub">ab 41.990€ · 500 km · 218 PS</div></div>
+    </a>
+
+    <!-- HAN & TANG (eigenes Video) -->
+    <a class="video-card fade-in" href="/premium_bg/en_han_fast.mp4" target="_blank" rel="noopener">
+      <div class="thumb-wrap">
+        <img class="poster" src="/premium_bg/en_han_poster.jpg" alt="" loading="lazy">
+        <video muted loop playsinline preload="none"><source src="/premium_bg/en_han_fast.mp4" type="video/mp4"></video>
+        <div class="play-btn">▶<span>TAP</span></div>
+      </div>
+      <div class="info"><h3>👑 HAN & TANG</h3><div class="sub">ab 69.000€ · 521 km · 517 PS</div></div>
+    </a>
+
+  </div>
+
+  <div class="premium-title fade-in" id="p">
+    <div class="num">⭐ Premium</div>
+    <h2>💰 Luxus-Klasse</h2>
+  </div>
+
+  <div class="showcase-grid">
+
+    <!-- YANGWANG U8 -->
+    <a class="video-card fade-in" href="/premium_bg/yangwang_u8_quick_fast.mp4" target="_blank" rel="noopener">
+      <div class="thumb-wrap">
+        <img class="poster" src="/premium_bg/yangwang_u8_quick_poster.jpg" alt="" loading="lazy">
+        <video muted loop playsinline preload="none"><source src="/premium_bg/yangwang_u8_quick_fast.mp4" type="video/mp4"></video>
+        <div class="play-btn">▶<span>TAP</span></div>
+      </div>
+      <div class="info"><h3>👑 YANGWANG U8</h3><div class="sub">~100.000€ · 1.197 PS · schwimmt 🌊</div></div>
+    </a>
+
+    <!-- YANGWANG U9 (eigenes Video) -->
+    <a class="video-card fade-in" href="/premium_bg/yangwang_u9_fast.mp4" target="_blank" rel="noopener">
+      <div class="thumb-wrap">
+        <img class="poster" src="/premium_bg/yangwang_u9_poster.jpg" alt="" loading="lazy">
+        <video muted loop playsinline preload="none"><source src="/premium_bg/yangwang_u9_fast.mp4" type="video/mp4"></video>
+        <div class="play-btn">▶<span>TAP</span></div>
+      </div>
+      <div class="info"><h3>🏁 YANGWANG U9</h3><div class="sub">~150.000€ · 1.306 PS · 0-100 in 2s</div></div>
+    </a>
+
+    <!-- DENZA D9 (eigenes Video) -->
+    <a class="video-card fade-in" href="/premium_bg/denza_d9_fast.mp4" target="_blank" rel="noopener">
+      <div class="thumb-wrap">
+        <img class="poster" src="/premium_bg/denza_d9_poster.jpg" alt="" loading="lazy">
+        <video muted loop playsinline preload="none"><source src="/premium_bg/denza_d9_fast.mp4" type="video/mp4"></video>
+        <div class="play-btn">▶<span>TAP</span></div>
+      </div>
+      <div class="info"><h3>🚐 DENZA D9</h3><div class="sub">~65.000€ · 7 Sitze · Business-Class</div></div>
+    </a>
+
+  </div>
+</section>
+
+<section class="tech-section">
+  <div class="showcase-title fade-in">
+    <h2>⚡ Warum BYD?</h2>
+  </div>
+  <div class="tech-grid">
+    <div class="tech-card fade-in"><div class="icon">🔪</div><h4>Blade Battery</h4><p>Sicherste LFP-Batterie. Nageltest bestanden. 1.000.000km+.</p></div>
+    <div class="tech-card fade-in"><div class="icon">🌊</div><h4>Schwimm-Modus</h4><p>Yangwang U8: 4 Motoren, Tank Turn, schwimmt auf Wasser.</p></div>
+    <div class="tech-card fade-in"><div class="icon">⚡</div><h4>800V Laden</h4><p>10-80% in 15 Minuten. Schneller als jeder Verbrenner.</p></div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>Bereit für BYD?</h2>
+  <p>Vom 19.000€ City-Flitzer bis zum 150.000€ Luxus-Hypercar.</p>
+  <a class="hero-cta" href="#s">▶ Alle Modelle</a>
+</section>
+
+<footer>
+  <div style="font-size:18px;font-weight:900;letter-spacing:-1px;margin-bottom:4px;">BYD<span style="color:var(--byd-red);">.</span></div>
+  Build Your Dreams
+</footer>
+
+<script>
+const observer = new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.1});
+document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+document.querySelectorAll('.video-card').forEach(c=>{const v=c.querySelector('video');if(!v)return;c.addEventListener('mouseenter',()=>{v.muted=true;v.play().catch(()=>{})});c.addEventListener('mouseleave',()=>{v.pause();v.currentTime=0})});
+document.querySelectorAll('.video-card').forEach((c,i)=>{c.style.transitionDelay=(i*0.04)+'s'});
+</script>
+</body>
+</html>

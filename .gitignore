@@ -1,0 +1,38 @@
+node_modules/
+*.mkv
+*.webm
+*.log
+byd_design_backup.html
+premium_bg/en_atto3_full.mp4
+premium_bg/yangwang_u8_hero_full.mp4
+premium_bg/*_full.mp4
+premium_bg/en_dolphin.mp4
+premium_bg/en_seal.mp4
+premium_bg/en_han.mp4
+premium_bg/en_atto3.mp4
+premium_bg/en_dolphin.webm
+premium_bg/en_seal.webm
+premium_bg/en_han.webm
+premium_bg/en_atto3.webm
+premium_bg/yangwang_u8_official.mp4
+premium_bg/yangwang_u8_official.mkv
+premium_bg/yangwang_u8_interior.mkv
+premium_bg/yangwang_u8_quick.mkv
+premium_bg/yangwang_u8_hero_full.mp4
+premium_bg/*_mobile.mp4
+premium_bg/*.mkv
+premium_bg/*.webm
+# Keep only fast versions + hero + one full poster source
+premium_bg/*dolphin_spot*
+premium_bg/*sealu_spot*
+premium_bg/*hantang_spot*
+premium_bg/*atto3evo_spot*
+premium_bg/*atto3_spot*
+premium_bg/*_full*
+premium_bg/BYD*
+premium_bg/'Anuncio BYD'*
+premium_bg/'All-new BYD'*
+premium_bg/'BYD ATTO'*
+premium_bg/'BYD Han'*
+premium_bg/'Der BYD'*
+premium_bg/'Der neue BYD'*
